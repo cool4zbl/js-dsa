@@ -4,6 +4,8 @@
  */
 
 /**
+ * time: O(max(num1.length, num2.length))
+ * space: O(num1.length + num2.length)
  * @param {string} num1
  * @param {string} num2
  * @return {string}
@@ -11,44 +13,59 @@
 function add(num1, num2) {
   // your code here
   if (!num1 || !num2) {
-    return num1 || num2;
+    return num1 || num2
   }
 
-  if (num1.length > num2.length) {
-    num2 = leftPad(num2, '0', num1.length);
-  } else if (num1.length < num2.length) {
-    num1 = leftPad(num1, '0', num2.length);
+  const arr1 = Array.from(num1)
+  const arr2 = Array.from(num2)
+
+  const result = []
+  let carry = 0
+
+  while (arr1.length || arr2.length || carry) {
+    let sum = (+arr1.pop() || 0) + (+arr2.pop() || 0) + carry
+    carry = Math.floor(sum / 10)
+    sum %= 10
+    result.unshift(sum)
   }
 
-  const arr1 = num1.split('');
-  const arr2 = num2.split('');
-
-  const len = num1.length;
-  const sumArr = '0'.repeat(len + 1).split('');
-
-  for (let i = len + 1; i--; ) {
-    let result = (+arr1[i - 1] || 0) + (+arr2[i - 1] || 0) + +sumArr[i];
-    if (result > 9) {
-      result = result % 10;
-      sumArr[i - 1] = 1;
-    }
-    sumArr[i] = result;
-  }
-  if (sumArr[0] === 0) {
-    return sumArr.join('').slice(1);
-  }
-  return sumArr.join('');
+  return result.join('')
 }
 
-function leftPad(str, padSymbol, len) {
-  while (len > str.length) {
-    str = `${padSymbol}${str}`;
+/**
+ * time: O(max(num1.length, num2.length))
+ * space: O(max(num1.length, num2.length))
+ * @param {string} num1
+ * @param {string} num2
+ * @return {string}
+ */
+function add2(num1, num2) {
+  if (!num1 || !num2) {
+    return num1 || num2
   }
-  return str;
+
+  let i = num1.length - 1
+  let j = num2.length - 1
+  const result = []
+
+  let carry = 0
+
+  while (i >= 0 || j >= 0 || carry) {
+    let sum = (+num1[i--] || 0) + (+num2[j--] || 0) + carry
+    result.unshift(sum % 10)
+    carry = Math.floor(sum / 10)
+  }
+  return result.join('')
 }
 
-console.log(add('999999999999999999', '1'));
-console.log(add('0', '1'));
-console.log(add('0', '0'));
-console.log(add('1', '0'));
-console.log(add('123456789123456789123456789', '123456789123456789123456789'));
+console.log(add('999999999999999999', '1'))
+console.log(add('0', '1'))
+console.log(add('0', '0'))
+console.log(add('1', '0'))
+console.log(add('123456789123456789123456789', '123456789123456789123456789'))
+
+console.log(add2('999999999999999999', '1'))
+console.log(add2('0', '1'))
+console.log(add2('0', '0'))
+console.log(add2('1', '0'))
+console.log(add2('123456789123456789123456789', '123456789123456789123456789'))
