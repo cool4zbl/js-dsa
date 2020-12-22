@@ -1,4 +1,5 @@
-// add-bigint-with-sign
+// 76. implement add-bigint-with-sign
+// @see https://bigfrontend.dev/problem/implement-BigInt-addition-with-sign
 
 /**
  *
@@ -52,16 +53,9 @@ function add(num1, num2) {
     result.unshift(sum % 10)
   }
 
-  let index = 0
-  for (let i = 0; i < result.length - 1; i++) {
-    if (+result[i] === 0) {
-      index = i + 1
-      continue
-    }
-    break
+  while (result.length > 1 && +result[0] === 0) {
+    result.shift()
   }
-
-  result = result.slice(index)
 
   if (isNegative) {
     result.unshift('-')
