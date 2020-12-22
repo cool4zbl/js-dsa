@@ -1,6 +1,8 @@
 // 76. implement add-bigint-with-sign
 // @see https://bigfrontend.dev/problem/implement-BigInt-addition-with-sign
 
+// Looks a bit messy now, finding a better way...
+
 /**
  *
  * @param {*} num1
