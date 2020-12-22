@@ -5,8 +5,8 @@
   Implement curry
   The key points are:
     1. knowing when to execute the curried function;
-    2. if not the executing time now, what is to return
-  So, we can see the executing time is the number of `arguments` of the new curried function equal to or greater than the original function we input before.
+    2. if not the execution time now, what is to return
+  So, we can see the execution time is when the number of `arguments` of the new curried function equal to or greater than the original function we input before.
   And if the number of `arguments` is not enough, we only need to return the curried function with current arguments bound and wait for the execution time.
  */
 
