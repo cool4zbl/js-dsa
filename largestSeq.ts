@@ -1,9 +1,9 @@
 function generateArr(length: number, min = 0, max = 20) {
-  const result = [];
+  const result = []
   while (length--) {
-    result.push(Math.round(Math.random() * (max - min) + min));
+    result.push(Math.round(Math.random() * (max - min) + min))
   }
-  return result;
+  return result
 }
 
 /**
@@ -11,30 +11,26 @@ function generateArr(length: number, min = 0, max = 20) {
  * @param arr arrays
  */
 function gsLS(arr: number[]) {
-  const n = arr.length;
-  if (!n) return 0;
+  const n = arr.length
+  if (!n) return 0
 
   let i = n,
-    j = n;
+    j = n
   let sum = 0,
-    gs = arr[0];
+    gs = arr[0]
 
   while (0 < i--) {
-    i;
-    j;
-    sum += arr[i];
+    sum += arr[i]
 
-    if (gs < sum) gs = sum;
+    if (gs < sum) gs = sum
     if (sum <= 0) {
-      sum = 0;
-      j = i;
+      sum = 0
+      j = i
     }
   }
-  return gs;
+  return gs
 }
 
-const a = generateArr(5, -10, 12);
-a;
+const a = generateArr(5, -10, 12)
 
-const b = gsLS(a);
-b;
+const b = gsLS(a)

@@ -8,7 +8,7 @@
 function curry(func) {
   return function curried(...args) {
     const truncateArgs = args.slice(0, func.length)
-    const hasPlaceholder = truncateArgs.some((arg) => arg === curry.placeholder)
+    const hasPlaceholder = truncateArgs.some(arg => arg === curry.placeholder)
 
     if (!hasPlaceholder && truncateArgs.length >= func.length) {
       return func(...truncateArgs)
@@ -16,10 +16,10 @@ function curry(func) {
 
     // Need to use the next function's `newArgs` to determine the whole arguments,
     // (replace the placeholder symbols in `args` with elements in `newArgs`)
-    // so there is need to return an obvious function rather `curried.bind(null, arguments)` directly.
+    // so there is need to return an obvious function rather than `curried.bind(null, arguments)` directly.
     return function (...newArgs) {
       // replace placeholders in args with values from newArgs
-      const res = args.map((arg) =>
+      const res = args.map(arg =>
         arg === curry.placeholder && newArgs.length ? newArgs.shift() : arg
       )
       return curried(...res, ...newArgs)
