@@ -7,8 +7,6 @@
  * @param {boolean} option.trailing
  */
 function debounce(func, wait, option = { leading: false, trailing: true }) {
-  // your code here
-
   let timer
 
   const startTimer = function (args) {
